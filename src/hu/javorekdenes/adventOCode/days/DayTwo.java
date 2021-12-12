@@ -42,6 +42,35 @@ public class DayTwo extends Day {
 
     @Override
     public Object solveTask2() {
-        return null;
+        List<String> inputList = getInputList();
+        int x = 0;
+        int depth = 0;
+        int aim = 0;
+
+        for (String input : inputList) {
+            String[] inputParts = input.split("\\s+");
+            String command = inputParts[0];
+            int amount = Integer.parseInt(inputParts[1]);
+
+            switch (command) {
+                case "forward": {
+                    x += amount;
+                    depth += aim * amount;
+                    break;
+                }
+                case "down": {
+                    aim += amount;
+                    break;
+                }
+                case "up": {
+                    aim -= amount;
+                    break;
+                }
+                default: System.out.println("Invalid input");
+            }
+        }
+
+
+        return x * depth;
     }
 }
