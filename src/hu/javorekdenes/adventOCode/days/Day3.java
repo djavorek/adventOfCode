@@ -5,7 +5,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class DayThree extends Day {
+public class Day3 extends Day {
     @Override
     public Object solveTask1() {
         List<String> inputList = getInputList();
