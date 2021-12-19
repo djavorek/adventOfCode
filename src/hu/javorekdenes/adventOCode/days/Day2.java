@@ -4,14 +4,12 @@ import java.util.List;
 
 public class Day2 extends Day {
     @Override
-    String getInputFilePathString() {
+    String getInputFileName() {
         return "input2.txt";
     }
 
     @Override
-    public Object solveTask1() {
-        List<String> inputList = getInputList();
-
+    public Object solvePart1(final List<String> inputList) {
         int x = 0;
         int depth = 0;
 
@@ -41,8 +39,7 @@ public class Day2 extends Day {
     }
 
     @Override
-    public Object solveTask2() {
-        List<String> inputList = getInputList();
+    public Object solvePart2(final List<String> inputList) {
         int x = 0;
         int depth = 0;
         int aim = 0;
@@ -69,7 +66,6 @@ public class Day2 extends Day {
                 default: System.out.println("Invalid input");
             }
         }
-
 
         return x * depth;
     }

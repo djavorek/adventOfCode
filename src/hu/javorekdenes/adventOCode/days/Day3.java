@@ -7,10 +7,8 @@ import java.util.stream.IntStream;
 
 public class Day3 extends Day {
     @Override
-    public Object solveTask1() {
-        List<String> inputList = getInputList();
-
-        String mostRecents = IntStream.range(0, inputList.get(0).length())
+    public Object solvePart1(final List<String> inputList) {
+        String mostRecent = IntStream.range(0, inputList.get(0).length())
                 .parallel()
                 .mapToObj((i) -> inputList.stream()
                         .map((s) -> s.substring(i, i+1))
@@ -21,20 +19,18 @@ public class Day3 extends Day {
                 .map(Optional::get)
                 .collect(Collectors.joining(""));
 
-        String leastRecents = mostRecents.chars()
+        String leastRecent = mostRecent.chars()
                 .mapToObj(c -> c == '1' ? "0" : "1")
                 .collect(Collectors.joining(""));
 
-        int decMostRecent = Integer.parseInt(mostRecents, 2);
-        int decLeastRecent = Integer.parseInt(leastRecents, 2);
+        int decMostRecent = Integer.parseInt(mostRecent, 2);
+        int decLeastRecent = Integer.parseInt(leastRecent, 2);
 
         return decMostRecent * decLeastRecent;
     }
 
     @Override
-    public Object solveTask2() {
-        final List<String> inputList = getInputList();
-
+    public Object solvePart2(final List<String> inputList) {
         List<String> o2gen_max = new ArrayList<>(inputList);
         List<String> co2scrub_min = new ArrayList<>(inputList);
 
@@ -100,7 +96,7 @@ public class Day3 extends Day {
     }
 
     @Override
-    String getInputFilePathString() {
+    String getInputFileName() {
         return "input3.txt";
     }
 }
