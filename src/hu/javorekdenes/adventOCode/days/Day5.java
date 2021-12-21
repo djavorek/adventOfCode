@@ -19,6 +19,7 @@ public class Day5 extends Day {
             Point endingPoint = new Point(endPoints[1]);
 
             // Leave this branch for the next part, I guess :)
+            // TODO: Check Why it alters solution? Two part could be merged without this
             if (!(startingPoint.getX().equals(endingPoint.getX()) || startingPoint.getY().equals(endingPoint.getY()))) {
                 continue;
             }
@@ -31,11 +32,9 @@ public class Day5 extends Day {
             }
         }
 
-        Long dangerousPointCount = cloudIntensityMap.entrySet().stream()
+        return cloudIntensityMap.entrySet().stream()
                 .filter((entry) -> entry.getValue() > 1)
                 .count();
-
-        return dangerousPointCount;
     }
 
     @Override
@@ -48,12 +47,6 @@ public class Day5 extends Day {
             Point startingPoint = new Point(endPoints[0]);
             Point endingPoint = new Point(endPoints[1]);
 
-            // Only perfectly diagonal diffs
-            if (Math.abs(startingPoint.getX() - endingPoint.getX()) ==
-                    Math.abs(startingPoint.getY() - endingPoint.getY())) {
-                continue;
-            }
-
             Set<Point> pointsForInput = Point.getPointsBetween(startingPoint, endingPoint, true);
 
             for (Point point : pointsForInput) {
@@ -62,11 +55,9 @@ public class Day5 extends Day {
             }
         }
 
-        Long dangerousPointCount = cloudIntensityMap.entrySet().stream()
+        return cloudIntensityMap.entrySet().stream()
                 .filter((entry) -> entry.getValue() > 1)
                 .count();
-
-        return dangerousPointCount;
     }
 
     @Override

@@ -25,27 +25,6 @@ public class Point {
         return y;
     }
 
-    @Override
-    public String toString() {
-        return "Point{" +
-                "x=" + x +
-                ", y=" + y +
-                '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Point point = (Point) o;
-        return Objects.equals(getX(), point.getX()) && Objects.equals(getY(), point.getY());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getX(), getY());
-    }
-
     public static Set<Point> getPointsBetween(Point p1, Point p2, boolean addDiagonals) {
         Set<Point> result = new HashSet<>();
         result.add(p1);
@@ -69,8 +48,8 @@ public class Point {
                 result.add(new Point(intermediateX, p1.getY()));
             }
         } else if (addDiagonals) {
-            if (Math.abs(p1.getX() - p2.getX()) == Math.abs(p1.getY() - p2.getY())) {
-                throw new IllegalArgumentException("Not complete diagonal");
+            if (Math.abs(p1.getX() - p2.getX()) != Math.abs(p1.getY() - p2.getY())) {
+                return Collections.emptySet();
             }
 
             int incrementX = p1.getX() > p2.getX() ? 1 : -1;
@@ -93,5 +72,26 @@ public class Point {
 
         result.add(p2);
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Point{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Point point = (Point) o;
+        return Objects.equals(getX(), point.getX()) && Objects.equals(getY(), point.getY());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getX(), getY());
     }
 }
