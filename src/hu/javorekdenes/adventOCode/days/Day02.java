@@ -2,7 +2,7 @@ package hu.javorekdenes.adventOCode.days;
 
 import java.util.List;
 
-public class Day2 extends Day {
+public class Day02 extends Day {
     @Override
     String getInputFileName() {
         return "input2.txt";

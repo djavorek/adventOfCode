@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class Day5 extends Day {
+public class Day05 extends Day {
     @Override
     Object solvePart1(List<String> inputList) {
         Map<Point, Integer> cloudIntensityMap = new HashMap<>();

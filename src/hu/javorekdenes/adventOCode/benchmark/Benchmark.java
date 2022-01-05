@@ -1,26 +1,6 @@
-package hu.javorekdenes.adventOCode;
+package hu.javorekdenes.adventOCode.benchmark;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-public class Utils {
-    public static List<String> getStringsFromFile(String filename) {
-        List<String> lines;
-        try {
-            lines = Files.readAllLines(Paths.get(filename));
-            String[] arr = lines.toArray(new String[0]);
-            return new ArrayList<>(Arrays.asList(arr));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return List.of();
-    }
-
+public class Benchmark {
     // TODO: Check again
     // https://www.oracle.com/technical-resources/articles/java/architect-benchmarking.html
     public static void bench(String name, long runMillis, int loop,

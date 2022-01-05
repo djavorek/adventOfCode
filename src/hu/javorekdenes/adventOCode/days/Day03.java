@@ -5,7 +5,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class Day3 extends Day {
+public class Day03 extends Day {
     @Override
     public Object solvePart1(final List<String> inputList) {
         String mostRecent = IntStream.range(0, inputList.get(0).length())

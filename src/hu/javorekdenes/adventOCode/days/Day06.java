@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Day6 extends Day{
+public class Day06 extends Day{
     @Override
     Object solvePart1(List<String> inputList) {
         String[] inputs = inputList.get(0).split(",");

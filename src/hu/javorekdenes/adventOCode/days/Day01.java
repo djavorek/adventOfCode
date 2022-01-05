@@ -3,7 +3,7 @@ package hu.javorekdenes.adventOCode.days;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Day1 extends Day {
+public class Day01 extends Day {
 
     @Override
     String getInputFileName() {

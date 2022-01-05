@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-public class Day4 extends Day {
+public class Day04 extends Day {
     @Override
     public Object solvePart1(final List<String> inputList) {
         List<Integer> numbersToDraw = new ArrayList<>();

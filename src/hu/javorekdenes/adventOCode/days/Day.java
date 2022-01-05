@@ -1,6 +1,7 @@
 package hu.javorekdenes.adventOCode.days;
 
-import hu.javorekdenes.adventOCode.Utils;
+import hu.javorekdenes.adventOCode.benchmark.Benchmark;
+import hu.javorekdenes.adventOCode.input.InputUtils;
 
 import java.util.Collections;
 import java.util.List;
@@ -32,9 +33,9 @@ public abstract class Day {
         String currentClassName = this.getClass().toString();
         String taskName = currentClassName.substring(currentClassName.lastIndexOf('.') + 1);
 
-        Utils.bench(taskName + " - Part 1", RUN_MILLIS, LOOP, WARMUP, REPEAT, () -> solvePart1(inputList));
+        Benchmark.bench(taskName + " - Part 1", RUN_MILLIS, LOOP, WARMUP, REPEAT, () -> solvePart1(inputList));
 
-        Utils.bench(taskName + " - Part 2", RUN_MILLIS, LOOP, WARMUP, REPEAT, () -> solvePart2(inputList));
+        Benchmark.bench(taskName + " - Part 2", RUN_MILLIS, LOOP, WARMUP, REPEAT, () -> solvePart2(inputList));
     }
 
     abstract Object solvePart1(List<String> inputList);
@@ -42,6 +43,6 @@ public abstract class Day {
     abstract String getInputFileName();
 
     private List<String> getInputList() {
-        return Utils.getStringsFromFile(getInputFileName());
+        return InputUtils.getStringsFromFile(getInputFileName());
     }
 }
