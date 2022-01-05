@@ -22,20 +22,34 @@ public class Day07 extends Day {
     Object solvePart2(List<String> inputList) {
         List<Integer> initialHorizontalPositions = InputUtils.integersFromInput(inputList);
 
-        OptionalDouble optionalAverage = initialHorizontalPositions.stream().mapToInt(Integer::valueOf).average();
+        OptionalDouble optionalMean = initialHorizontalPositions.stream().mapToInt(Integer::valueOf).average();
 
-        if (optionalAverage.isEmpty()) {
-            throw new IllegalArgumentException("Average became empty");
+        if (optionalMean.isEmpty()) {
+            throw new IllegalArgumentException("Average cannot be empty, check input");
         }
-        int roundedAverage = (int)Math.round(optionalAverage.getAsDouble());
+        // We need to check both ceil and floor, as it is not sure that the rounded average is the most efficient.
+        // average - 1/2 < solution < average + 1/2
+        final int ceil = (int)Math.ceil(optionalMean.getAsDouble());
+        final int floor = ceil - 1;
 
-        return initialHorizontalPositions.stream()
+        int fuelUsageWithFloor = initialHorizontalPositions
+                .stream()
                 .mapToInt((position) -> {
-                    int distance = Math.abs(position - roundedAverage);
+                    int distance = Math.abs(position - floor);
                     return (distance * (distance + 1)) / 2;
                 })
                 .sum();
 
+        int fuelUsageWithCeil = initialHorizontalPositions
+                .stream()
+                .mapToInt((position) -> {
+                    int distance = Math.abs(position - ceil);
+                    return (distance * (distance + 1)) / 2;
+                })
+                .sum();
+
+
+        return Math.min(fuelUsageWithFloor, fuelUsageWithCeil);
     }
 
     @Override
