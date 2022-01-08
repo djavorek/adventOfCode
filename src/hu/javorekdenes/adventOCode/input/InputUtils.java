@@ -11,16 +11,12 @@ import java.util.stream.Collectors;
 
 public class InputUtils {
     public static List<String> getStringsFromFile(String filename) {
-        List<String> lines;
         try {
-            lines = Files.readAllLines(Paths.get(filename));
-            String[] arr = lines.toArray(new String[0]);
-            return new ArrayList<>(Arrays.asList(arr));
+            return Files.readAllLines(Paths.get(filename));
         } catch (IOException e) {
-            e.printStackTrace();
+            System.err.println("Error during reading the input file: " + filename);
+            throw new Error("Cannot continue without input.");
         }
-
-        return List.of();
     }
 
     /**
