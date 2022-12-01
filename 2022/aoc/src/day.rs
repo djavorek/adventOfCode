@@ -2,8 +2,6 @@ use crate::util::read_lines;
 
 use std::fmt::Display;
 
-pub mod day_01;
-
 pub trait Day<T: Display> {
     fn get_date(&self) -> u8;
     fn solve_part_1(&self, input: &str) -> T;
@@ -23,3 +21,6 @@ pub trait Day<T: Display> {
         (date, result_1, result_2)
     }
 }
+
+pub mod day_01;
+pub mod day_02;

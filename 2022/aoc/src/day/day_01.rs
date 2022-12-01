@@ -1,7 +1,6 @@
 use crate::util::{vec_of_strings};
 
 use super::Day;
-use itertools::{max, Itertools};
 
 static DATE: u8 = 1;
 pub struct Day01;
@@ -12,29 +11,31 @@ impl Day<u32> for Day01 {
     }
 
     fn solve_part_1(&self, input: &str) -> u32 {
-        let lines = vec_of_strings(input);
-        return max(calculate_calories_sums(lines)).unwrap();
+        let input_lines = vec_of_strings(input);
+        let calories_by_elves = calculate_calories_by_elves(input_lines);
+        return *calories_by_elves.iter().max().unwrap();
     }
 
     fn solve_part_2(&self, input: &str) -> u32 {
         let lines = vec_of_strings(input);
-        let sums = calculate_calories_sums(lines);
+        let mut calories_by_elves = calculate_calories_by_elves(lines);
+        calories_by_elves.sort();
 
-        return sums.iter().sorted().rev().take(3).sum();
+        return calories_by_elves.iter().rev().take(3).sum();
     }
 }
 
-fn calculate_calories_sums(lines: Vec<&str>) -> Vec<u32> {
-    let mut current = 0;
-    let mut sums: Vec<u32> = vec![];
+fn calculate_calories_by_elves(lines: Vec<&str>) -> Vec<u32> {
+    let mut current_calorie_sum = 0;
+    let mut calories_by_elves: Vec<u32> = vec![];
     for line in lines {
         if line.is_empty() {
-            sums.push(current);
-            current = 0;
+            calories_by_elves.push(current_calorie_sum);
+            current_calorie_sum = 0;
         } else {
-            current += line.parse::<u32>().unwrap();
+            current_calorie_sum += line.parse::<u32>().unwrap();
         }
     }
-    sums.push(current);
-    sums
+    calories_by_elves.push(current_calorie_sum);
+    calories_by_elves
 }
