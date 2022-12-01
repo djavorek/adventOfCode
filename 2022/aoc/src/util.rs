@@ -1,13 +1,12 @@
 use std::env;
 use std::fs;
 
-pub fn read_lines<P>(folder: &str, day: u8) -> String {
+pub fn read_lines(day: u8) -> String {
     let cwd = env::current_dir().unwrap();
-
     let filepath = cwd.join("inputs").join(format!("{:02}.txt", day));
 
     let f = fs::read_to_string(filepath);
-    f.expect("could not open input file")
+    f.expect("Could not open input file. Someone sledded away with the bits")
 }
 
 pub fn vec_of_strings(input: &str) -> Vec<&str> {

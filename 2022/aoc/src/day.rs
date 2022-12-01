@@ -1,21 +1,25 @@
-use std::fmt::Display;
-use std::path::Path;
+use crate::util::read_lines;
 
+use std::fmt::Display;
 
 pub mod day_01;
 
 pub trait Day<T: Display> {
+    fn get_date(&self) -> u8;
     fn solve_part_1(&self, input: &str) -> T;
     fn solve_part_2(&self, input: &str) -> T;
-    fn get_inputs(&self) -> &str;
 
-    fn solve(&self) -> (&str, T, T) {
-        let filename = Path::new(file!()).file_name().and_then(|s| s.to_str()).unwrap();
+    fn get_inputs(&self) -> String {
+        return read_lines(self.get_date());
+    }
+
+    fn solve(&self) -> (u8, T, T) {
+        let date = self.get_date();
 
         let input = self.get_inputs();
         let result_1 = self.solve_part_1(&input);
         let result_2 = self.solve_part_2(&input);
 
-        (filename, result_1, result_2)
+        (date, result_1, result_2)
     }
 }
