@@ -27,9 +27,9 @@ impl Day<u32> for Day02 {
         return input_lines.iter()
             .map(|line| line.split_once(" ").unwrap())
             .map(|touple| {
-                let step = find_step_according_to_map(touple.0, part_1_decryption.to_owned());
-                let own_step = find_step_according_to_map(touple.1, part_1_decryption.to_owned());
-                calculate_total_round_score(step, own_step)
+                let step = find_meaning(touple.0, part_1_decryption.to_owned());
+                let own_step = find_meaning(touple.1, part_1_decryption.to_owned());
+                calculate_score_from_steps(step, own_step)
             } )
             .fold(0, |acc, score| acc + score as u32);
     }
@@ -49,15 +49,16 @@ impl Day<u32> for Day02 {
         return input_lines.iter()
             .map(|line| line.split_once(" ").unwrap())
             .map(|touple| {
-                let step = find_step_according_to_map(touple.0, part_2_decryption.to_owned());
-                let own_step = find_step_according_to_map(touple.1, part_2_decryption.to_owned());
-                calculate_total_round_score(step, own_step)
+                let step = find_meaning(touple.0, part_2_decryption.to_owned());
+                let outcome = find_meaning(touple.1, part_2_decryption.to_owned());
+                let required_step = get_step_for_outcome(step, outcome);
+                calculate_score_from_steps(step, required_step)
             } )
             .fold(0, |acc, score| acc + score as u32);
     }
 }
 
-fn calculate_total_round_score(step: Meaning, own_step: Meaning) -> u8 {
+fn calculate_score_from_steps(step: Meaning, own_step: Meaning) -> u8 {
     let round_result_score = calculate_round_result_score(step, own_step);
     round_result_score + own_step as u8
 }
@@ -76,9 +77,30 @@ fn calculate_round_result_score(step: Meaning, own_step: Meaning) -> u8 {
     0
 }
 
-fn find_step_according_to_map(input: &str, meaning_map: HashMap<char, Meaning>) -> Meaning {
-    let step_char = input.chars().next().expect("Input is lazy, eww.");
-    return *meaning_map.get(&step_char).expect("Input is playing by its own rules, JEEZ");
+fn get_step_for_outcome(step: Meaning, outcome: Meaning) -> Meaning {
+    if outcome == Meaning::Draw {
+        return step
+    }
+    if outcome == Meaning::Win {
+        return match step {
+            Meaning::Paper => Meaning::Scissors,
+            Meaning::Scissors => Meaning::Rock,
+            Meaning::Rock => Meaning::Paper,
+            _ => Meaning::Rock,
+        };
+    } else {
+        return match step {
+            Meaning::Paper => Meaning::Rock,
+            Meaning::Scissors => Meaning::Paper,
+            Meaning::Rock => Meaning::Scissors,
+            _ => Meaning::Rock,
+        };
+    }
+}
+
+fn find_meaning(input: &str, meaning_map: HashMap<char, Meaning>) -> Meaning {
+    let character = input.chars().next().expect("Input is lazy, eww.");
+    return *meaning_map.get(&character).expect("Input is playing by its own rules, JEEZ");
 }
 
 #[derive(Copy, Clone, PartialEq)]
