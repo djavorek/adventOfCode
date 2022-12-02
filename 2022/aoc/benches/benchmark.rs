@@ -1,9 +1,9 @@
-use aoc::day::{Day, day_01::Day01};
+use aoc::day::{Day, day_02::Day02};
 use criterion::{criterion_group, criterion_main, Criterion};
 
 
 fn run_benchmark() {
-    Day01 {}.solve();
+    Day02 {}.solve();
 }
 
 fn criterion_benchmark(c: &mut Criterion) {

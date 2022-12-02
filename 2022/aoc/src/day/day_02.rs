@@ -26,9 +26,9 @@ impl Day<u32> for Day02 {
 
         return input_lines.iter()
             .map(|line| line.split_once(" ").unwrap())
-            .map(|touple| {
-                let step = find_meaning(touple.0, part_1_decryption.to_owned());
-                let own_step = find_meaning(touple.1, part_1_decryption.to_owned());
+            .map(|input_parts| {
+                let step = find_meaning(input_parts.0, &part_1_decryption);
+                let own_step = find_meaning(input_parts.1, &part_1_decryption);
                 calculate_score_from_steps(step, own_step)
             } )
             .fold(0, |acc, score| acc + score as u32);
@@ -48,9 +48,9 @@ impl Day<u32> for Day02 {
 
         return input_lines.iter()
             .map(|line| line.split_once(" ").unwrap())
-            .map(|touple| {
-                let step = find_meaning(touple.0, part_2_decryption.to_owned());
-                let outcome = find_meaning(touple.1, part_2_decryption.to_owned());
+            .map(|input_parts| {
+                let step = find_meaning(input_parts.0, &part_2_decryption);
+                let outcome = find_meaning(input_parts.1, &part_2_decryption);
                 let required_step = get_step_for_outcome(step, outcome);
                 calculate_score_from_steps(step, required_step)
             } )
@@ -73,7 +73,7 @@ fn calculate_round_result_score(step: Meaning, own_step: Meaning) -> u8 {
        (own_step == Meaning::Scissors && step == Meaning::Paper) {
         return 6;
     }
-
+    
     0
 }
 
@@ -98,7 +98,7 @@ fn get_step_for_outcome(step: Meaning, outcome: Meaning) -> Meaning {
     }
 }
 
-fn find_meaning(input: &str, meaning_map: HashMap<char, Meaning>) -> Meaning {
+fn find_meaning(input: &str, meaning_map: &HashMap<char, Meaning>) -> Meaning {
     let character = input.chars().next().expect("Input is lazy, eww.");
     return *meaning_map.get(&character).expect("Input is playing by its own rules, JEEZ");
 }
