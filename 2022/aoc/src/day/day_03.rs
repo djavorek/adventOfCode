@@ -40,11 +40,10 @@ impl Day<u32> for Day03 {
     }
 }
 
-fn find_intersect(sets: (&str, &str)) -> char {
-    let (first, second) = sets;
+fn find_intersect(set: (&str, &str)) -> char {
+    let (first, second) = set;
 
     return first.chars()
-        .into_iter()
         .filter(move |c| second.contains(*c))
         .next()
         .unwrap();
