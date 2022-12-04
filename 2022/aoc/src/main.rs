@@ -1,9 +1,9 @@
 use std::fmt::Display;
-use aoc::day::{Day, day_02::Day02};
+use aoc::day::{Day, day_03::Day03};
 
 fn main() {
     println!("Hello, Santa!");
-    print_results(Day02 {});
+    print_results(Day03 {});
 }
 
 fn print_results<R: Display, T: Day<R>>(day: T) { 
