@@ -38,6 +38,14 @@ impl Day<u32> for Day03 {
         }
         priority_sum
     }
+
+    fn get_expected_result_1(&self) -> u32 {
+        7848
+    }
+
+    fn get_expected_result_2(&self) -> u32 {
+        2616
+    }
 }
 
 fn find_intersect(set: (&str, &str)) -> char {

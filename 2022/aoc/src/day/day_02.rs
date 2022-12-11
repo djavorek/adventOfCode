@@ -56,6 +56,14 @@ impl Day<u32> for Day02 {
             } )
             .fold(0, |acc, score| acc + score as u32);
     }
+
+    fn get_expected_result_1(&self) -> u32 {
+        12679
+    }
+
+    fn get_expected_result_2(&self) -> u32 {
+        14470
+    }
 }
 
 fn calculate_score_from_steps(step: Meaning, own_step: Meaning) -> u8 {

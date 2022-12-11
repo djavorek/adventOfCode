@@ -11,15 +11,23 @@ impl Day<u32> for Day04 {
     }
 
     fn solve_part_1(&self, input: &str) -> u32 {
-        let input_lines = vec_of_strings(input);
+        let input_lines = vec_of_strings(input).iter().map(|line| line.trim()).collect();
         let overlap_count = get_overlap_count(input_lines, &check_complete_overlap);
         overlap_count.try_into().unwrap()
     }
 
     fn solve_part_2(&self, input: &str) -> u32 {
-        let input_lines = vec_of_strings(input);
+        let input_lines = vec_of_strings(input).iter().map(|line| line.trim()).collect();
         let overlap_count = get_overlap_count(input_lines, &check_overlap);
         overlap_count.try_into().unwrap()
+    }
+
+    fn get_expected_result_1(&self) -> u32 {
+        550
+    }
+
+    fn get_expected_result_2(&self) -> u32 {
+        931
     }
 }
 

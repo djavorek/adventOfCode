@@ -1,12 +1,13 @@
 use std::fmt::Display;
-use aoc::day::{Day, day_05::Day05};
+use aoc::day::{Day, day_06::Day06};
 
 fn main() {
     println!("Hello, Santa!");
-    print_results(Day05 {});
+    print_results(Day06);
+    
 }
 
-fn print_results<R: Display, T: Day<R>>(day: T) { 
+fn print_results<R: Display + std::cmp::PartialEq + std::fmt::Debug , T: Day<R>>(day: T) { 
     let (day, result_1, result_2) = day.solve();
 
     println!("******** Results of Day {} ********", day);

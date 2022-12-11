@@ -10,11 +10,7 @@ pub fn read_lines(day: u8) -> String {
 }
 
 pub fn vec_of_strings(input: &str) -> Vec<&str> {
-    let lines: Vec<&str> = input.split('\n').map(|str| {
-        str.trim()
-    }).collect();
-
-    lines
+    input.split('\n').collect()
 }
 
 pub fn vec_of_numbers(input: &str) -> Vec<u32> {
