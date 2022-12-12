@@ -1,13 +1,13 @@
-use crate::util::{vec_of_strings};
+use crate::util::vec_of_strings;
 
 use super::Day;
 
-static DATE: u8 = 3;
 
 const ASCII_LOWER_TO_PRIORITY: u8 = 96;
 const ASCII_UPPER_TO_PRIORITY: u8 = 38;
 
 pub struct Day03;
+static DATE: u8 = 3;
 
 impl Day<u32> for Day03 {
     fn get_date(&self) -> u8 {

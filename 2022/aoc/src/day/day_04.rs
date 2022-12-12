@@ -1,9 +1,9 @@
-use crate::util::{vec_of_strings};
+use crate::util::vec_of_strings;
 use super::Day;
 
-static DATE: u8 = 4;
 
 pub struct Day04;
+static DATE: u8 = 4;
 
 impl Day<u32> for Day04 {
     fn get_date(&self) -> u8 {

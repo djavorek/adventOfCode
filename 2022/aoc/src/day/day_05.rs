@@ -1,12 +1,11 @@
-use crate::util::{vec_of_strings};
+use crate::util::vec_of_strings;
 use super::Day;
-
-static DATE: u8 = 5;
 
 const CRATE_DEF_START: &str = "[";
 const MOVE_INSTRUCTION: &str = "move";
 
 pub struct Day05;
+static DATE: u8 = 5;
 
 impl Day<String> for Day05 {
     fn get_date(&self) -> u8 {

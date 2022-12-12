@@ -1,10 +1,9 @@
 use std::fmt::Display;
-use aoc::day::{Day, day_06::Day06};
+use aoc::day::{Day, day_07::Day07};
 
 fn main() {
     println!("Hello, Santa!");
-    print_results(Day06);
-    
+    print_results(Day07);
 }
 
 fn print_results<R: Display + std::cmp::PartialEq + std::fmt::Debug , T: Day<R>>(day: T) { 
