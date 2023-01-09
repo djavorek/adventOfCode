@@ -25,8 +25,8 @@ impl Day<u32> for Day08 {
             }
         }
 
-        for row_i in 1..DIMENSION-2 {
-            for column_i in 1..DIMENSION-2 {
+        for row_i in 1..DIMENSION-1 {
+            for column_i in 1..DIMENSION-1 {
                 let item = trees[row_i][column_i];
                 let row_left: BinaryHeap<&u8> = trees[row_i].iter()
                                                             .take(column_i)
